@@ -1,0 +1,16 @@
+#lang racket
+(define (count-change amount kinds-of-coins)
+  (cond((= amount 0) 1)         ;钱数最终等于0表示有一种方法
+       ((< amount 0) 0)         ;钱数最终小于0表示没有方法
+       ((= kinds-of-coins 0) 0) ;货币种类小于0表示没有方法(比如9块钱要换成3或5元的零钱)
+       (else(+ (count-change amount (- kinds-of-coins 1))
+               (count-change (- amount (coin kinds-of-coins)) kinds-of-coins))))
+  (define (coin kinds-of-coins)
+    (cond((= kinds-of-coins 1) 1)
+         ((= kinds-of-coins 2) 2)
+         ((= kinds-of-coins 3) 5))))
+
+
+(count-change 6 3)
+  
+        

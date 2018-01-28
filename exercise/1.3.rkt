@@ -1,0 +1,26 @@
+#lang racket
+
+(provide square)
+
+;求三个数中较大两个数的平方和
+
+(define (bigger x y)
+    (if (> x y)
+        x
+        y))
+
+(define (smaller x y)
+    (if (> x y)
+        y
+        x))
+
+(define (square x)
+  (* x x))
+
+(define (sum-of-square x y)
+  (+ (square x) (square y)))
+
+(define (bigger-sum-of-square x y z)
+  (sum-of-square  (bigger x y) (bigger (smaller x y ) z))) 
+
+(bigger-sum-of-square 4 2 3)

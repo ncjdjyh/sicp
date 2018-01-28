@@ -1,0 +1,21 @@
+#lang racket
+
+;线性递归
+(define (mut-iter n)
+(if (= n 1) 1
+    (* n (mut-iter (- n 1)))))
+
+(mut-iter 5)
+
+(define (mut n)
+  (mut-iter2 1 1 n))
+
+;迭代递归
+(define (mut-iter2 value next count)
+  (if (< count next) value
+      (mut-iter2 (* value next)
+                 (+ next 1)
+                 count)))
+
+(mut 5)
+
