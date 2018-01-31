@@ -1,0 +1,11 @@
+#lang racket
+;费马检测
+
+(define (fermat-test? n)
+  (cond (
+
+(define (fast-prime? n times)   ;指定times次如果仍然成立就说明他是素数
+  (cond ((= times 0) true)
+        ((fermat-test? n) (fast-prime? n (- times 1)))
+        (else
+         false))

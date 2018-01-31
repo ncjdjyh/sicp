@@ -1,0 +1,16 @@
+(load "Util.rkt")
+(define (xps f a b n)
+  (define (h)
+    (/ (- b a) n))
+  (define (y k)
+    (f (+ a (* k (h)))))
+  (define (factor k)
+    (cond ((or (= k 0) (= k n)) (* 1 (y k)))
+          ((even? k) (* 4 (y k)))
+          (else (* 2 (y k)))))
+  (define (next k) (+ k 1))
+  (* (/ (h) 3)
+     (sum factor 0 next n)))
+       
+
+(xps cube 0 1 1000)

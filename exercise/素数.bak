@@ -1,0 +1,6 @@
+#lang racket
+(define (prime-number? x)
+  (define (prime-iter x n)
+    (cond ((< x (squate n))
+          n)
+          ((remain

@@ -1,4 +1,8 @@
 #lang racket
+
+
+(provide half double odd? fast-expt)
+
 (define (+ a b)
   (cond ((= a 0) b)
         (else (+ (sub1 a) (add1 b)))))
@@ -7,12 +11,12 @@
   (cond ((= a 0) b)
         (else (add1 (+ (sub1 a) b)))))
 
-(add 1 2)
+
 
 (define (* a b)
   (cond ((= a 0) 0)
         (else (+ (* (- a 1) b) b))))
-(* 4 5)
+
 
 (define (double n)
   (* n 2))
@@ -36,7 +40,7 @@
           (else (expt-iter (* v a) a (- n 1)))))
   (expt-iter 1 a n))
 
-(fast-expt 2 5)
+
 
 
 

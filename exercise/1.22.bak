@@ -1,0 +1,40 @@
+
+;费马检测
+
+
+(define (prime? n)
+  (fast-prime? n 10))
+
+(define (fermat-test? n)
+  (define (try-it r)            ;随机尝试一个数
+    (= r (exp-mod r n n)))
+  (try-it (+ 1 (random (- n 1)))))
+
+(define (exp-mod n exp mod)
+  (cond ((= exp 0) 1)
+        (else
+         (remainder (* n(exp-mod n (- exp 1) mod)) mod))))   
+  
+(define (fast-prime? n times)   ;指定times次如果仍然成立就说明他是素数
+  (cond ((= times 0) true)
+        ((fermat-test? n) (fast-prime? n (- times 1)))
+        (else
+         false)))
+
+(prime? 11)
+
+
+
+(define (timed-prime-test n)
+  (newline)
+  (display n)
+  (start-prime-test n (runtime)))
+
+(define (start-prime-test n start-time)
+  (if (prime? n)
+      (report-prime (- (runtime) start-time))))
+
+(define (report-prime elapsed-time)
+  (display "***")
+  (display elapsed-time))
+

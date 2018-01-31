@@ -1,8 +1,7 @@
-#lang racket
 
 ;用牛顿环求立方根 
 
-(require "1.8Util.rkt")
+(load "Util.rkt")
 
 (define (cube-root-iter guess x)
   (if (good-enough? guess x)
@@ -18,4 +17,4 @@
 (define (cube-root x)
   (cube-root-iter 1 x))
 
-(cube-root 2)
+(cube-root 8)

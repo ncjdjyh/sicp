@@ -1,6 +1,4 @@
-#lang racket
 
-(provide square)
 
 ;求三个数中较大两个数的平方和
 
