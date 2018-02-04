@@ -1,0 +1,30 @@
+ (define (info value count)
+   (display "step:")
+   (display count)
+   (display "  ")
+   (display "value:")
+   (display value)
+   (newline))
+
+(define (fixed-point f first)
+  (define (close-enough? a b)
+    (< (abs (- a b)) 0.0001))
+  (define (try guess count)
+    (let ((next (f guess)))
+      (info guess count)
+    (if (close-enough? guess next)
+         next
+        (try next (+ count 1)))))
+  (try first 0))
+
+(define (sqrt x)
+  (fixed-point (lambda (y) (/ (+ (/ x y) y ) 2))
+                 1.0))
+
+(sqrt 9)
+
+(define (fi)
+  (fixed-point (lambda (x)
+                 (+ 1 (/ 1 x)))
+               1))
+(fi)

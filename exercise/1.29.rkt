@@ -1,16 +1,24 @@
 (load "Util.rkt")
-(define (xps f a b n)
+
+(define (xps1 f a b n)
   (define (h)
     (/ (- b a) n))
-  (define (y k)
-    (f (+ a (* k (h)))))
-  (define (factor k)
-    (cond ((or (= k 0) (= k n)) (* 1 (y k)))
-          ((even? k) (* 4 (y k)))
-          (else (* 2 (y k)))))
-  (define (next k) (+ k 1))
+  (define (term k)
+    (define (factor)
+    (cond ((or (= k 0) (= k n)) 1)
+          ((even? k) 4)
+          (else 2)))
+    (define (y)
+      (f (+ a (* k (h)))))
+    (* (factor) (y)))
+  (define (next k)
+    (+ k 1))
   (* (/ (h) 3)
-     (sum factor 0 next n)))
-       
+     (sum term 0 next n)))   ;sum过程做的就是y(0)+4*y(1) + 2*y(2) + 4*y(3) + 2*y(4)+```+y(n)   从y(k)加到y(n)
 
-(xps cube 0 1 1000)
+(xps1 cube 0 1 10000)
+
+
+    
+  
+    

@@ -1,0 +1,19 @@
+(load "Util.rkt")
+
+(define (product term n next)
+  (cond ((= n 1) 1)
+        (else
+         (* n
+            (product
+             (term n)
+             (next n)
+             next)))))
+
+(define (factorial n)
+  (define (next x) (- x 1))
+  (define (term x) x)
+  (product term n next))
+
+(factorial 10)
+        
+               
